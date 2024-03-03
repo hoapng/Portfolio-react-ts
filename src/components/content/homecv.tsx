@@ -29,7 +29,9 @@ const HomeCV = () => {
                     &nbsp;
                     <TypeAnimation
                       sequence={[
-                        "Fullstack Web Developer",
+                        "Freelancer",
+                        2000,
+                        "Web Developer",
                         2000,
 
                         () => {
