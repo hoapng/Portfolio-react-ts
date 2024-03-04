@@ -1,6 +1,6 @@
 import desktopLogo from "@/assets/img/logo/desktop-logo.png";
 import { useEffect, useState } from "react";
-
+import { isMobile } from "react-device-detect";
 interface IProps {
   hideLeftPart: boolean;
   setHideLeftPart: (value: boolean) => void;
@@ -147,21 +147,26 @@ const LeftPart = (props: IProps) => {
               </ul>
             </div>
           </div>
-          <a
-            className={
-              props.hideLeftPart ? "arlo_tm_resize opened" : "arlo_tm_resize"
-            }
-            href="#"
-            onClick={() => props.setHideLeftPart(!props.hideLeftPart)}
-          >
-            <i
+          {!isMobile && (
+            <a
               className={
-                props.hideLeftPart
-                  ? "xcon-angle-left opened"
-                  : "xcon-angle-left"
+                props.hideLeftPart ? "arlo_tm_resize opened" : "arlo_tm_resize"
               }
-            ></i>
-          </a>
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                props.setHideLeftPart(!props.hideLeftPart);
+              }} //toggle
+            >
+              <i
+                className={
+                  props.hideLeftPart
+                    ? "xcon-angle-left opened"
+                    : "xcon-angle-left"
+                }
+              ></i>
+            </a>
+          )}
         </div>
       </div>
     </>
