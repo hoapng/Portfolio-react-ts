@@ -1,4 +1,5 @@
 import desktopLogo from "@/assets/img/logo/desktop-logo.png";
+import { useState } from "react";
 
 interface IProps {
   hideLeftPart: boolean;
@@ -6,6 +7,20 @@ interface IProps {
 }
 
 const LeftPart = (props: IProps) => {
+  const [activeTab, setActiveTab] = useState<string>("home");
+
+  const handleClickTab = (
+    tab: string,
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    setActiveTab(tab);
+
+    const section = document.querySelector(`#${tab}`);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
     <>
       <div
@@ -28,25 +43,59 @@ const LeftPart = (props: IProps) => {
           <div className="menu_list_wrap">
             <ul className="anchor_nav">
               <li>
-                <a href="#home">Home</a>
+                <a
+                  href="#home"
+                  className={activeTab === "home" ? "active" : ""}
+                  onClick={(
+                    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                  ) => handleClickTab("home", event)}
+                >
+                  Home
+                </a>
               </li>
               <li>
-                <a href="#about">About</a>
+                <a
+                  href="#about"
+                  className={activeTab === "about" ? "active" : ""}
+                  onClick={(
+                    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                  ) => handleClickTab("about", event)}
+                >
+                  About
+                </a>
               </li>
               <li>
-                <a href="#skills">Skills</a>
+                <a
+                  href="#skills"
+                  className={activeTab === "skills" ? "active" : ""}
+                  onClick={(
+                    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                  ) => handleClickTab("skills", event)}
+                >
+                  Skills
+                </a>
               </li>
               <li>
-                <a href="#projects">Projects</a>
+                <a
+                  href="#project"
+                  className={activeTab === "project" ? "active" : ""}
+                  onClick={(
+                    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                  ) => handleClickTab("project", event)}
+                >
+                  Projects
+                </a>
               </li>
               <li>
-                <a href="#portfolio">Portfolio</a>
-              </li>
-              <li>
-                <a href="#news">News</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
+                <a
+                  href="#contact"
+                  className={activeTab === "contact" ? "active" : ""}
+                  onClick={(
+                    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                  ) => handleClickTab("contact", event)}
+                >
+                  Contact
+                </a>
               </li>
             </ul>
           </div>
